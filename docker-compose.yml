@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  apache:
+    build: 
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - "root:/root/"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50M
+        reservations:
+          cpus: '0.25'
+          memory: 20M
+    links:
+      - "apache1:apache1"
+      
+
+  apache1:
+    build: 
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "81:80"
+    volumes:
+      - "root:/root/"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50M
+        reservations:
+          cpus: '0.25'
+          memory: 20M
+
+
+volumes:
+  root:
+
+volumes:
+  root:
+
+    
